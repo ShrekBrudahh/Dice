@@ -17,13 +17,14 @@ void setup(){
     dCT[i] =  new Die(30,30,5,false);
     dCT[i].roll();
   }
+  totalRoll();
 }
 
 boolean singleClick = false;
 int clickInc = 0;
 void draw(){
   background(0,0,0);
- 
+  totalRoll();
   ang += angIncr;
  
   float oDX = 0;
@@ -67,7 +68,7 @@ void mousePressed(){
   for (int n = 1; n <= numberOfDie; n++){
     dCT[n].roll();
   }
- 
+  
 }
 
 
@@ -143,4 +144,13 @@ public float clamp(float x, float min, float max){
     x = max;
   }
   return x;
+}
+
+public void totalRoll(){
+  int sum = 0;
+  for (int n = 1; n <= numberOfDie; n++){
+    sum += dCT[n].nDots;
+  }
+  textSize(30);
+  text("T O T A L : "+sum,30,675);
 }
